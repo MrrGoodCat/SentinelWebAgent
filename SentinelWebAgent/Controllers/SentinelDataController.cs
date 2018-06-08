@@ -11,11 +11,23 @@ namespace SentinelWebAgent.Controllers
     public class SentinelDataController : ApiController
     {
 
-        public IEnumerable<Employee> Get()
+        public HttpResponseMessage Get(string gender = "All")
         {
             using (EmployeeDBEntities employeeDBEntities = new EmployeeDBEntities())
             {
-                return employeeDBEntities.Employees.ToList();
+                switch (gender.ToLower())
+                {
+                    case "all":
+                        return Request.CreateResponse(HttpStatusCode.OK, employeeDBEntities.Employees.ToList());
+                    case "male":
+                        return Request.CreateResponse(HttpStatusCode.OK, 
+                            employeeDBEntities.Employees.Where(e=>e.Gender.ToLower() == "male").ToList());
+                    case "female":
+                        return Request.CreateResponse(HttpStatusCode.OK,
+                            employeeDBEntities.Employees.Where(e => e.Gender.ToLower() == "female").ToList());
+                    default:
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Value for gender must be All, Male or Female. " + gender + " is invalid.");
+                }
             }
         }
 
