@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using WebApiContrib.Formatting.Jsonp;
 
 namespace SentinelWebAgent
 {
@@ -22,6 +24,13 @@ namespace SentinelWebAgent
             //config.Formatters.Remove(config.Formatters.XmlFormatter);
             //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
             //config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+
+            EnableCorsAttribute enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(enableCorsAttribute);
+
+            config.Filters.Add(new RequireHttpsAttribute());
+            //var JsonpFormatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter);
+            //config.Formatters.Insert(0, JsonpFormatter);
         }
     }
 }
