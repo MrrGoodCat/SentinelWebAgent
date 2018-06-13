@@ -9,16 +9,27 @@
             var ulEmployee = $('#ulEmployee');
 
             $('#btn').click(function () {
+                var username = $('#txtUsername').val();
+                var password = $('#txtPassword').val();
                 $.ajax({
                     type: 'GET',
                     url: 'api/SentinelData',
                     dataType: 'json',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(username + ':' + password)
+                    },
                     success: function (data) {
                         ulEmployee.empty();
                         $.each(data, function (index, val) {
                             var fullName = val.FirstName + ' ' + val.LastName;
-                            ulEmployee.append('<li>' + fullName + '</li>')
+                            ulEmployee.append('<li>' + fullName + ' (' + val.Gender + ')</li>')
                         });
+                    },
+                    complete: function (jqXHR) {
+                        if (jqXHR.status == '401') {
+                            ulEmployee.empty();
+                            ulEmployee.append('<li>' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>')
+                        }
                     }
                 });
             });
@@ -30,7 +41,10 @@
     </script>
 </head>
 <body>
-    <input id="btn" type="button" value="Get All Employee" />
+    Username: <input type="text" id="txtUsername" />
+    Password: <input type="text" id="txtPassword" />
+    <br/><br />
+    <input id="btn" type="button" value="Authenticate and Get Employee" />
     <input id="btnClear" type="button" value="Clear" />
     <ul id="ulEmployee"></ul>
 </body>

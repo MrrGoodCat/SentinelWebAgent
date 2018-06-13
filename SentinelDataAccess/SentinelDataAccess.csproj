@@ -68,6 +68,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SentinelAgentDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>SentinelAgentDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="SentinelAgentDataModel.edmx">

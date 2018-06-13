@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using SentinelDataAccess;
 
@@ -10,15 +11,14 @@ namespace SentinelWebAgent.Controllers
 {
     public class SentinelDataController : ApiController
     {
-
+        [BasicAuthentication]
         public HttpResponseMessage Get(string gender = "All")
         {
+            string username = Thread.CurrentPrincipal.Identity.Name;
             using (EmployeeDBEntities employeeDBEntities = new EmployeeDBEntities())
             {
-                switch (gender.ToLower())
+                switch (username.ToLower())
                 {
-                    case "all":
-                        return Request.CreateResponse(HttpStatusCode.OK, employeeDBEntities.Employees.ToList());
                     case "male":
                         return Request.CreateResponse(HttpStatusCode.OK, 
                             employeeDBEntities.Employees.Where(e=>e.Gender.ToLower() == "male").ToList());
@@ -26,7 +26,7 @@ namespace SentinelWebAgent.Controllers
                         return Request.CreateResponse(HttpStatusCode.OK,
                             employeeDBEntities.Employees.Where(e => e.Gender.ToLower() == "female").ToList());
                     default:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Value for gender must be All, Male or Female. " + gender + " is invalid.");
+                        return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
             }
         }
