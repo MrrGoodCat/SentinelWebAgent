@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentinelDataAccess", "Senti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentinelAgentWebClient", "SentinelAgentWebClient\SentinelAgentWebClient.csproj", "{946B3B20-367F-4F04-B9DA-3B02E92E5177}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentinelUsers", "SentinelUsers\SentinelUsers.csproj", "{D92D6878-2693-4CED-8C1F-BB4D33D49167}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{946B3B20-367F-4F04-B9DA-3B02E92E5177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{946B3B20-367F-4F04-B9DA-3B02E92E5177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{946B3B20-367F-4F04-B9DA-3B02E92E5177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92D6878-2693-4CED-8C1F-BB4D33D49167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92D6878-2693-4CED-8C1F-BB4D33D49167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92D6878-2693-4CED-8C1F-BB4D33D49167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92D6878-2693-4CED-8C1F-BB4D33D49167}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

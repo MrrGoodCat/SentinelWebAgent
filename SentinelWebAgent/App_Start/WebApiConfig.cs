@@ -25,10 +25,10 @@ namespace SentinelWebAgent
             //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
             //config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
 
-            EnableCorsAttribute enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(enableCorsAttribute);
+            //EnableCorsAttribute enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors();
 
-            config.Filters.Add(new RequireHttpsAttribute());
+            //config.Filters.Add(new RequireHttpsAttribute());
             //var JsonpFormatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter);
             //config.Formatters.Insert(0, JsonpFormatter);
         }

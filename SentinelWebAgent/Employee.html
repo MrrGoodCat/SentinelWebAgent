@@ -28,7 +28,7 @@
                     complete: function (jqXHR) {
                         if (jqXHR.status == '401') {
                             ulEmployee.empty();
-                            ulEmployee.append('<li>' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>')
+                            ulEmployee.append('<li style="color: red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>')
                         }
                     }
                 });
@@ -42,7 +42,7 @@
 </head>
 <body>
     Username: <input type="text" id="txtUsername" />
-    Password: <input type="text" id="txtPassword" />
+    Password: <input type="password" id="txtPassword" />
     <br/><br />
     <input id="btn" type="button" value="Authenticate and Get Employee" />
     <input id="btnClear" type="button" value="Clear" />
