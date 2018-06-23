@@ -38,7 +38,7 @@ namespace SentinelUsers
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(10),
                 // В рабочем режиме задайте AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
@@ -59,11 +59,11 @@ namespace SentinelUsers
             //    appId: "",
             //    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "150157601771-f7cf5v5u49mt5t6jui6hmg76f12l0idm.apps.googleusercontent.com",
+                ClientSecret = "YWITO3G3F-gvcXrtXi7CDxMF"
+            });
         }
     }
 }

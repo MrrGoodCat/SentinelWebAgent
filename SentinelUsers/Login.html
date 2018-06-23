@@ -11,8 +11,9 @@
             <table class="table table-bordered">
                 <thead>
                     <tr class="success">
-                        <td colspan="2">Existing User Login
-                        <a class="btn btn-success pull-right" href="Register.html">Register</a>
+                        <td colspan="2">
+                            Existing User Login
+                            <a class="btn btn-success pull-right" href="Register.html">Register</a>
                         </td>
                     </tr>
                 </thead>
@@ -36,6 +37,22 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="success">
+                        <td colspan="2">
+                            Social Logins
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input id="btnGoogleLogin" class="btn btn-success" type="button" value="Login with Google" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div id="divError" class="alert alert-danger collapse">
                 <a id="linkClose" class="close" href="#">&times;</a>
                 <div id="divErrorText"></div>
@@ -45,11 +62,20 @@
 
     <script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/GoogleAuthentication.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+
+            getAccessToken();
+
             $('#linkClose').click(function () {
                 $('#divError').hide('fade');
             });
+
+            $('#btnGoogleLogin').click(function () {
+                window.location.href = '/api/Account/ExternalLogin?provider=Google&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A53268%2FLogin.html'
+            });
+
             $('#btnLogin').click(function () {
                 $.ajax({
                     url: '/token',
@@ -61,7 +87,8 @@
                         grant_type: 'password'
                     },
                     success: function (response) {
-                        sessionStorage.setItem('accessToken', response.access_token);
+                        localStorage.setItem('accessToken', response.access_token);
+                        localStorage.setItem('userName', response.userName);
                         window.location.href = "Data.html";
                     },
                     error: function (jqXHR) {
